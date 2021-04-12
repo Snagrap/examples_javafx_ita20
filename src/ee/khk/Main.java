@@ -17,6 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class Main extends Application{
@@ -33,21 +34,33 @@ public class Main extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        CheckBox java = new CheckBox("Java");
-        java.setSelected(true);
-        CheckBox javaScript = new CheckBox("JavaScript");
-        javaScript.setAllowIndeterminate(true);
-        CheckBox csharp = new CheckBox("C#");
-        csharp.setAllowIndeterminate(true);
-        csharp.setIndeterminate(true);
+        selectedLangs = new Label("No languages selected");
+        java = new CheckBox("Java");
+        javaScript = new CheckBox("JavaScript");
+        csharp = new CheckBox("C#");
+        java.setOnAction(Event -> show());
+        javaScript.setOnAction(Event -> show());
+        csharp.setOnAction(Event -> show());
         FlowPane root = new FlowPane(Orientation.VERTICAL, 0, 10);
-        root.getChildren().addAll(java, javaScript, csharp);
-        root.setPadding(new Insets(10));
+        root.getChildren().addAll(java, javaScript, csharp, selectedLangs);
+        root.setPadding(new Insets(0,0,0,10));
         Scene scene = new Scene(root, 250, 200);
         stage.setScene(scene);
         stage.setTitle("Hello JavaFX");
         stage.show();
 
+    }
+
+    private void show(){
+        String allSelected = "";
+        if(java.isSelected()) allSelected += "Java ";
+        if(javaScript.isSelected()) allSelected += "JavaScript ";
+        if(csharp.isSelected()) allSelected += "C#";
+
+        if(allSelected.equals(""))
+            selectedLangs.setText("No languages selected");
+        else
+            selectedLangs.setText(allSelected);
     }
 
 }
