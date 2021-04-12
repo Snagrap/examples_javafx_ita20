@@ -38,9 +38,11 @@ public class Main extends Application{
 
         VBox.setVgrow(okBtn, Priority.ALWAYS);
         okBtn.setMaxHeight(Double.MAX_VALUE);
+        okBtn.setMaxWidth(100);
 
         VBox.setVgrow(cancelBtn, Priority.ALWAYS);
         cancelBtn.setMaxHeight(Double.MAX_VALUE);
+        cancelBtn.setMaxWidth(100);
 
         vbox.getChildren().addAll(lbl, okBtn, cancelBtn);
         Scene scene = new Scene(vbox, 300, 150);
