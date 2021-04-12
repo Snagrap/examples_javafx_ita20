@@ -29,19 +29,31 @@ public class Main extends Application{
     @Override
     public void start(Stage stage) {
 
-        Label headerLbl = new Label("Press the login button");
-        StackPane.setAlignment(headerLbl, Pos.TOP_CENTER);
-        StackPane.setMargin(headerLbl, new Insets(10, 0, 0, 0));
-        Label statusLbl = new Label("Start screen");
-        StackPane.setAlignment(statusLbl, Pos.BOTTOM_CENTER);
-        StackPane.setMargin(statusLbl, new Insets(0, 0, 10, 0));
-        Button loginBtn = new Button("Login");
-        StackPane root = new StackPane(headerLbl, statusLbl, loginBtn);
+        Button topBtn = new Button("Top");
+        AnchorPane.setTopAnchor(topBtn, 10.0);
+        AnchorPane.setLeftAnchor(topBtn, 60.0);
+        AnchorPane.setRightAnchor(topBtn, 60.0);
 
+        Button bottomBtn = new Button("Bottom");
+        AnchorPane.setBottomAnchor(bottomBtn, 10.0);
+        AnchorPane.setLeftAnchor(bottomBtn, 60.0);
+        AnchorPane.setRightAnchor(bottomBtn, 60.0);
+
+        Button leftBtn = new Button("Left");
+        AnchorPane.setTopAnchor(leftBtn, 30.0);
+        AnchorPane.setLeftAnchor(leftBtn, 15.0);
+        AnchorPane.setBottomAnchor(leftBtn, 30.0);
+
+        Button rightBtn = new Button("Right");
+        AnchorPane.setTopAnchor(rightBtn, 30.0);
+        AnchorPane.setRightAnchor(rightBtn, 15.0);
+        AnchorPane.setBottomAnchor(rightBtn, 30.0);
+
+        AnchorPane root = new AnchorPane(topBtn, rightBtn, bottomBtn, leftBtn);
 
         Scene scene = new Scene(root, 300, 150);
         stage.setScene(scene);
-        stage.setTitle("StackPane in JavaFX");
+        stage.setTitle("Anchor in JavaFX");
         stage.show();
 
     }
