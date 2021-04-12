@@ -28,17 +28,15 @@ public class Main extends Application{
     @Override
     public void start(Stage stage) {
 
-        BorderPane root = new BorderPane();
-        Button top = new Button("Top");
-        BorderPane.setAlignment(top, Pos.CENTER);
-        root.setTop(top);
-        Button center = new Button("Center");
-        root.setCenter(center);
+        Label headerLbl = new Label("Press the login button");
+        Label statusLbl = new Label("Start screen");
+        Button loginBtn = new Button("Login");
+        StackPane root = new StackPane(headerLbl, statusLbl, loginBtn);
 
 
         Scene scene = new Scene(root, 300, 150);
         stage.setScene(scene);
-        stage.setTitle("BorderPane in JavaFX");
+        stage.setTitle("StackPane in JavaFX");
         stage.show();
 
     }
