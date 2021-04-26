@@ -28,25 +28,17 @@ public class Main extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        Label selectedLbl = new Label();
-        RadioButton javaBtn = new  RadioButton("Java");
-        RadioButton jsBtn = new RadioButton("JavaScript");
-        RadioButton csharpBtn = new RadioButton("C#");
-        ToggleGroup group = new ToggleGroup();
-        javaBtn.setToggleGroup(group);
-        jsBtn.setToggleGroup(group);
-        csharpBtn.setToggleGroup(group);
-
-        javaBtn.setOnAction(event -> selectedLbl.setText("Selected: Java"));
-        jsBtn.setOnAction(event -> selectedLbl.setText("Selected: JavaScript"));
-        csharpBtn.setOnAction(event -> selectedLbl.setText("Selected: C#"));
-
-        FlowPane root = new FlowPane(Orientation.VERTICAL, 10, 10);
-        root.getChildren().addAll(javaBtn, jsBtn, csharpBtn, selectedLbl);
-        root.setPadding(new Insets(10));
-        Scene scene = new Scene(root, 250,200);
+        Label lbl = new Label();
+        TextArea textArea = new TextArea();
+        textArea.setPrefColumnCount(15);
+        textArea.setPrefRowCount(5);
+        Button btn = new Button("Click:");
+        btn.setOnAction(event -> lbl.setText("Input: " + textArea.getText()));
+        FlowPane root = new FlowPane(Orientation.VERTICAL, 10, 10, textArea, btn, lbl);
+        root.setAlignment(Pos.CENTER);
+        Scene scene = new Scene(root, 300, 250);
         stage.setScene(scene);
-        stage.setTitle("RadioButtons in JavaFX");
+        stage.setTitle("TextArea in JavaFX");
         stage.show();
 
     }
