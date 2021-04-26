@@ -5,15 +5,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.*;
 import javafx.scene.Parent;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Group;
 import javafx.scene.text.Text;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,23 +28,25 @@ public class Main extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        ToggleButton lightBtn = new ToggleButton("Lights");
-        Label stateLbl = new Label();
-        lightBtn.setOnAction(event -> {
-            if(lightBtn.isSelected()) {
-                stateLbl.setText("Lights on!");
-            }
-            else{
-                stateLbl.setText("Lights off...");
-            }
-        });
+        Label selectedLbl = new Label();
+        RadioButton javaBtn = new  RadioButton("Java");
+        RadioButton jsBtn = new RadioButton("JavaScript");
+        RadioButton csharpBtn = new RadioButton("C#");
+        ToggleGroup group = new ToggleGroup();
+        javaBtn.setToggleGroup(group);
+        jsBtn.setToggleGroup(group);
+        csharpBtn.setToggleGroup(group);
 
-        FlowPane root = new FlowPane(10, 10);
-        root.getChildren().addAll(lightBtn, stateLbl);
+        javaBtn.setOnAction(event -> selectedLbl.setText("Selected: Java"));
+        jsBtn.setOnAction(event -> selectedLbl.setText("Selected: JavaScript"));
+        csharpBtn.setOnAction(event -> selectedLbl.setText("Selected: C#"));
+
+        FlowPane root = new FlowPane(Orientation.VERTICAL, 10, 10);
+        root.getChildren().addAll(javaBtn, jsBtn, csharpBtn, selectedLbl);
         root.setPadding(new Insets(10));
-        Scene scene = new Scene(root, 250, 200);
+        Scene scene = new Scene(root, 250,200);
         stage.setScene(scene);
-        stage.setTitle("Hello JavaFX");
+        stage.setTitle("RadioButtons in JavaFX");
         stage.show();
 
     }
