@@ -34,17 +34,15 @@ public class Main extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         ObservableList<String> langs = FXCollections.observableArrayList("Java", "JavaScript", "C#", "Python");
-        ListView<String> langsListView = new ListView<String>(langs);
-        langsListView.setPrefSize(250,150);
-        Button btn = new Button("Change");
-        btn.setOnAction(event -> {
-            ObservableList<String> newLangs = FXCollections.observableArrayList("PHP", "Go", "C++");
-            langsListView.setItems(newLangs);
-        });
-        FlowPane root = new FlowPane(Orientation.VERTICAL, 10, 10, btn, langsListView);
+        ComboBox<String> langsComboBox = new ComboBox<String>(langs);
+        langsComboBox.setValue("Java");
+        Label lbl = new Label();
+        langsComboBox.setOnAction(event -> lbl.setText(langsComboBox.getValue()));
+
+        FlowPane root = new FlowPane(Orientation.VERTICAL, 10, 10, langsComboBox, lbl);
         Scene scene = new Scene(root, 300, 250);
         stage.setScene(scene);
-        stage.setTitle("ListView in JavaFX");
+        stage.setTitle("ComboBox in JavaFX");
         stage.show();
 
     }
