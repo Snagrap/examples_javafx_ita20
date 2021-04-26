@@ -28,14 +28,12 @@ public class Main extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        Label lbl = new Label();
-        TextArea textArea = new TextArea();
-        textArea.setPrefColumnCount(15);
-        textArea.setPrefRowCount(5);
-        Button btn = new Button("Click:");
-        btn.setOnAction(event -> lbl.setText("Input: " + textArea.getText()));
-        FlowPane root = new FlowPane(Orientation.VERTICAL, 10, 10, textArea, btn, lbl);
-        root.setAlignment(Pos.CENTER);
+        Label headerLbl = new Label("ScrollPane");
+        Label textLbl = new Label("KARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGE");
+        ScrollPane scrollPane = new ScrollPane(textLbl);
+        scrollPane.setPrefViewportHeight(150);
+        scrollPane.setPrefViewportWidth(200);
+        FlowPane root = new FlowPane(Orientation.VERTICAL, 10, 10, headerLbl, scrollPane);
         Scene scene = new Scene(root, 300, 250);
         stage.setScene(scene);
         stage.setTitle("TextArea in JavaFX");
