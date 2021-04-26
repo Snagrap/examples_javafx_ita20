@@ -1,6 +1,9 @@
 package ee.khk;
 
 import javafx.application.Application;
+import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.*;
@@ -28,15 +31,23 @@ public class Main extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        Label headerLbl = new Label("ScrollPane");
-        Label textLbl = new Label("KARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGEKARL ON ÄGE");
-        ScrollPane scrollPane = new ScrollPane(textLbl);
-        scrollPane.setPrefViewportHeight(150);
-        scrollPane.setPrefViewportWidth(200);
-        FlowPane root = new FlowPane(Orientation.VERTICAL, 10, 10, headerLbl, scrollPane);
-        Scene scene = new Scene(root, 300, 250);
+        Label lbl = new Label("Slider:");
+        Slider slider = new Slider(0.0, 20.0, 10.0);
+        slider.setShowTickMarks(true);
+        slider.setShowTickLabels(true);
+        slider.setBlockIncrement(2.0);
+        slider.setMajorTickUnit(5.0);
+        slider.setMinorTickCount(4);
+        slider.setSnapToTicks(true);
+        slider.valueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> changed, Number oldValue, Number newValue) {
+                lbl.setText("Slider Value: " + newValue);
+            }
+        });
+        FlowPane root = new FlowPane(Orientation.VERTICAL, 10, 10, slider, lbl);
+        Scene scene = new Scene(root, 300, 150);
         stage.setScene(scene);
-        stage.setTitle("TextArea in JavaFX");
+        stage.setTitle("Slider in JavaFX");
         stage.show();
 
     }
